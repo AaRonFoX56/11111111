@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask NASA API Example - Mars Rover Photos Result</title>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <style>
+        body {
+            background: #f1f1f1;
+            font-family: 'Montserrat';
+            font-size: 22px;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        li {
+            width: calc(33.33% - 20px);
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        .photo-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-card:hover {
+            transform: scale(1.05);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+
+        .smaller {
+            width: 50%;
+        }
+
+        p {
+            color: #555;
+            margin: 5px 0;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        p.no-photos {
+            text-align: center;
+            color: #555;
+        }
+
+        p.back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Mars Rover Photos</h2>
+
+    {% if photos %}
+        <ul>
+            {% for photo in photos %}
+                <li>
+                    <div class="photo-card">
+                        <img src="{{ photo.img_src }}" alt="Mars Rover Photo" class="smaller">
+                        <p><strong>Date:</strong> {{ photo.earth_date }}</p>
+                        <p><strong>Description:</strong> {{ photo.rover.name }} - {{ photo.camera.full_name }}</p>
+                        <p><strong>Opened by:</strong> {{ photo.rover.name }}</p>
+                        <p><strong>University:</strong> University of NASA</p>
+
+                        <p><strong>Research:</strong>
+                            {% if loop.index == 1 %}
+                                Exploration of Martian Soil Composition
+                            {% elif loop.index == 2 %}
+                                Study of Martian Atmospheric Conditions
+                            {% else %}
+                                Sample Analysis from Mars
+                            {% endif %}
+                        </p>
+
+                        <p><strong>Findings:</strong>
+                            {% if loop.index == 1 %}
+                                Discovered new minerals in the Martian soil.
+                            {% elif loop.index == 2 %}
+                                Identified variations in atmospheric pressure.
+                            {% else %}
+                                Analyzed rock samples for signs of past microbial life.
+                            {% endif %}
+                        </p>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="no-photos">No photos available for the selected parameters.</p>
+    {% endif %}
+
+    <p class="back-link"><a href="{{ url_for('mars') }}">Back to Mars Rover Photos</a></p>
+</body>
+</html>
