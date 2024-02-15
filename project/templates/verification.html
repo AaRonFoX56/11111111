@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Verification</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+  <style>
+    body {
+            background: #D3DCAE;
+            font-family: 'Montserrat';
+            font-size: 22px;
+        }
+
+        .verification-form {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px 20px;
+            background: #F6FFD3;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-control {
+            border-radius: 20px;
+            background: #eee;
+            transition: padding 0.5s;
+        }
+
+        .form-control:hover {
+          padding: 30px;
+        }
+
+        .form-control::placeholder {
+            color: #aaa;
+        }
+
+        .form-control:-ms-input-placeholder {
+            color: #aaa;
+        }
+
+        .form-control::-ms-input-placeholder {
+            color: #aaa;
+        }
+
+        button[type="submit"] {
+            position: relative;
+            overflow: hidden;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            background: #333;
+            color: #fff;
+            transition: padding 0.5s;
+        }
+
+        button[type="submit"]:hover {
+            padding: 15px 25px;
+            cursor: pointer;
+        }
+
+        .form-button {
+            display: flex;
+            justify-content: center;
+        }
+
+        button[type="submit"] {
+            display: block;
+            margin: 0 auto;
+        }
+  </style>
+</head>
+<body>
+<div class="verification-form">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <h1>Verification</h1>
+
+    <form action="/verification" method="post">
+
+        <div class="form-group">
+            <label>Code:</label>
+            <input type="text" class="form-control" name="code" required>
+        </div>
+
+        <div class="form-button">
+            <button type="submit">
+                <span>Verify</span>
+            </button>
+        </div>
+
+    </form>
+
+</div>
+</body>
+</html>

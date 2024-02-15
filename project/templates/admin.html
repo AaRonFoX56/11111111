@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin</title>
+</head>
+<body>
+
+  <form method="POST">
+    <label>Model name:</label>
+    <input type="text" name="model-name" placeholder="Enter a model name:">
+
+    <br>
+
+    <label>Colors:</label>
+    <textarea name="colors" placeholder="Enter model colors:"></textarea>
+
+    <br>
+
+    <label>Price:</label>
+    <input type="text" name="price" placeholder="Enter a price:">
+
+    <br>
+
+    <label>Description:</label>
+    <textarea name="description" placeholder="Enter a description:"></textarea>
+
+    <input type="submit" value="Upload">
+  </form>
+
+
+  <form method="POST" enctype="multipart/form-data">
+    <input type="file" name="pic">
+    <input type="submit" value="Upload a file">
+  </form>
+
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Car showroom</title>
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+  <style>
+  body {
+    background: #D3DCAE;
+    font-family: 'Montserrat';
+    font-size: 22px;
+  }
+
+  .site-top {
+    top: 0;
+    background-color: #A1A789;
+    color: white;
+    height: 100px;
+    text-align: left;
+  }
+
+  .site-bottom {
+    background-color: #A1A789;
+    width: 2500px;
+    color: white;
+    text-align: left;
+    position: absolute;
+    bottom: 0;
+  }
+
+  #car-showroom {
+    padding-left: 20px;
+  }
+
+  .tesla-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .instagram-button {
+    font-family: 'Montserrat';
+    font-size: 22px;
+    border: none;
+    padding: 19px;
+    border-radius: 35px;
+    color: white;
+    transition: background 0.5s, color 0.5s;
+    background: linear-gradient(to bottom left, purple, pink, orange)
+  }
+
+  .instagram-button:hover {
+      background: white;
+      color: purple;
+  }
+
+  .instagram-button:active {
+      opacity: 0.5;
+  }
+
+  .youtube-button {
+      font-family: 'Montserrat';
+      font-size: 22px;
+      border: none;
+      padding: 19px;
+      border-radius: 35px;
+      color: white;
+      transition: background 0.5s, color 0.5s;
+      background: linear-gradient(to bottom left, red, grey)
+  }
+
+  .youtube-button:hover {
+      background: white;
+      color: red;
+  }
+
+  .youtube-button:active {
+      opacity: 0.5;
+  }
+  </style>
+</head>
+<body>
+<div class="site-top">
+    <span id="car-showroom">Car Showroom</span>
+    <img src="https://static.vecteezy.com/system/resources/thumbnails/013/923/535/small/sports-car-logo-png.png" align="right" width="100" height="100"/>
+</div>
+
+<img class="tesla-logo" src="https://cdn.mos.cms.futurecdn.net/BQwukuZwwwXrg27B9Le2Q6-1200-80.png" height="200" width="250" />
+
+
+  {% for car in cars %}
+        <h2 class="toggleHeader">{{ car['model'] }}</h2>
+        <div class="game-info">
+            <p> Price: {{ car['price'] }} </p>
+            <p> Description: {{ car['description'] }} </p>
+            <select>
+            {% for color in car['colors'] %}
+                <option> {{ color }} </option>
+            {% endfor %}
+            </select>
+        </div>
+    {% endfor %}
+
+<footer>
+<div class="site-bottom">
+    <a href="https://www.instagram.com/"><button onlick="return false;" class="instagram-button">Our Instagram</button></a>
+    <a href="https://www.youtube.com/"><button onlick="return false;" class="youtube-button">Our YouTube channel</button></a>
+    <p> Our phone number: +555 380 975</p>
+</div>
+</footer>
+  <script>
+        var toggleHeaders = document.querySelectorAll(".toggleHeader");
+
+        toggleHeaders.forEach(function(header) {
+            header.addEventListener("click", function() {
+                var form = header.nextElementSibling;
+                if (form.style.display === "none" || form.style.display === "") {
+                    form.style.display = "block";
+                } else {
+                    form.style.display = "none";
+                }
+            });
+        });
+  </script>
+</body>
+</html>
